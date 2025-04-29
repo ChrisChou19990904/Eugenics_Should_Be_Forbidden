@@ -23,6 +23,34 @@
     p {
       margin-bottom: 1em;
     }
+    #google_translate_element {
+      position: fixed;
+      top: 10px;  /* 距離頁面頂端 10px */
+      left: 10px; /* 距離頁面左側 10px */
+      z-index: 9999; /* 保證它不會被其他元素遮蓋 */
+    }
+    #social-share {
+      position: fixed;
+      top: 30px;  /* 距離頁面頂端 10px */
+      left: 10px; /* 距離頁面左側 10px */
+      z-index: 9999; /* 保證它不會被其他元素遮蓋 */
+    }
+    #social-share a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #social-share span {
+      margin: 0 5px;
+    }
+    #social-share a#fb-share {
+      color: #4267B2;
+    }
+    #social-share a#line-share {
+      color: #00C300;
+    }
+    #social-share a#twitter-share {
+      color: #1DA1F2;
+    }
   </style>
 </head>
 <body>
@@ -72,6 +100,39 @@
 <p>基因編輯並非原罪，但我們必須意識到，它不僅改變了人類的身體，也重塑了道德、責任與愛的定義。</p>
 <p>當我們擁有「設計生命」的能力，也就被迫面對：<strong>我們究竟是為了讓孩子更好而選擇，還是只是為了不讓自己承擔後果？</strong></p>
 <p>如果我們忘了人性的脆弱與可貴，最後可能創造出一個沒有缺陷的世界，但也沒有靈魂的文明。</p>
-
+<div id="google-translate-box">
+  <div id="google_translate_element"></div>
+  <!-- Google Translate 的自動翻譯功能 -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'zh-TW',  // 頁面原語言
+        includedLanguages: 'en,es,fr,de,it,zh-CN,ja,ko,th,vi,my,id,ms',  // 支援的翻譯語言（可擴展）
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <!-- 社群分享按鈕區塊 -->
+  <div id="social-share" style="margin-top: 20px;">
+    <a id="fb-share" href="#" target="_blank" style="text-decoration: none; color: #4267B2; font-weight: bold;">分享到 Facebook</a>
+    <span> | </span>
+    <a id="line-share" href="#" target="_blank" style="text-decoration: none; color: #00C300; font-weight: bold;">分享到 Line</a>
+    <span> | </span>
+    <a id="twitter-share" href="#" target="_blank" style="text-decoration: none; color: #1DA1F2; font-weight: bold;">分享到 X</a>
+  </div>
+  <script>
+    // 自動抓取當前頁面的 URL
+    var currentUrl = window.location.href;
+    // Facebook 分享
+    document.getElementById("fb-share").href =
+            "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentUrl);
+    // Line 分享
+    document.getElementById("line-share").href =
+            "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(currentUrl);
+    // X (Twitter) 分享
+    document.getElementById("twitter-share").href =
+            "https://twitter.com/intent/tweet?url=" + encodeURIComponent(currentUrl) + "&text=你的文章標題";
+  </script>
 </body>
 </html>
